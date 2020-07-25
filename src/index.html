@@ -19,6 +19,12 @@
     <link rel="stylesheet" type="text/css" href="./style.css" />
   </head>
   <body>
+    <div
+      class="overlay"
+      id="overlay"
+      style="display: none;"
+      onclick="hideShareOptions(this)"
+    ></div>
     <div class="preview-main">
       <div class="image-container">
         <img class="preview-image" src="../images/drawers.jpg" />
@@ -42,8 +48,27 @@
             <span>28 Jun 2020</span>
           </div>
           <div class="share-container">
-            <div class="share-button">
+            <div
+              class="share-button"
+              id="share-button"
+              onclick="showShareOptions()"
+            >
               <img src="../images/icon-share.svg" class="share-icon" />
+            </div>
+            <div
+              class="share-options"
+              id="share-options"
+              style="display: none;"
+            >
+              <span>Share</span>
+              <img src="../images/icon-facebook.svg" />
+              <img src="../images/icon-twitter.svg" />
+              <img id="pinterest" src="../images/icon-pinterest.svg" />
+              <div class="share-options__share-container">
+                <div class="share-button">
+                  <img src="../images/icon-share.svg" />
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -55,5 +80,22 @@
         >Frontend Mentor</a
       >. Coded by &nbsp;<a href="#">Esther Owusu-Ansah</a>.
     </div>
+    <script>
+      function showShareOptions() {
+        document.getElementById("share-options").style.display = "grid";
+        document.getElementById("overlay").style.display = "block";
+      }
+      function hideShareOptions(e) {
+        e = e || window.event;
+        let optionsDisplay = document.getElementById("share-options").style
+          .display;
+        let target = e.target || e.srcElement || e;
+        if (target.nodeType == 3) target = target.parentNode;
+        if (target.id !== "share-options") {
+          document.getElementById("share-options").style.display = "none";
+          document.getElementById("overlay").style.display = "none";
+        }
+      }
+    </script>
   </body>
 </html>
